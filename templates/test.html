@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>BIENVENUE SUR CHAT JAL</title>
+</head>
+<body>
+    <h1>BIENVENUE SUR CHAT JAL</h1>
+    <form method="POST">
+        <input type="text" name="message" placeholder="Tape ton message" value="racontes moi une blague au hasard !">
+        <button type="submit">Envoyer</button>
+    </form>
+
+    {% if response %}
+        <h2>Réponse du LLM :</h2>
+        <p>{{ response }}</p>
+    {% endif %}
+</body>
+</html>
