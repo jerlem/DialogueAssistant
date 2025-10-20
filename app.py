@@ -5,7 +5,19 @@ app = Flask(__name__)
 
 LLM_URL = "http://127.0.0.1:1234/v1/chat/completions"  # route correcte pour LM Studio
 
-@app.route("/", methods=["GET", "POST"])
+@app.route('/')
+def index():
+    return "<h3>Bienvenue !</h3><p>Essaye <a href='/template/testjstree'>/template/testjstree</a></p>"
+
+@app.route('/template/testjstree')
+def test_jstree():
+    return render_template('testjstree.html')
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
+'''@app.route("/", methods=["GET", "POST"])
 def home():
     response = None
     if request.method == "POST":
@@ -28,7 +40,4 @@ def home():
             response = data["choices"][0]["message"]["content"]
         except Exception as e:
             response = f"Erreur : {e}"
-    return render_template("test.html", response=response)
-
-if __name__ == "__main__":
-    app.run(debug=True)
+    return render_template("test.html", response=response)'''
