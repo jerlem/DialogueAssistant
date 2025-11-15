@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>jsTree + jQuery - Local Flask</title>
+
+  <!-- JQuery -->
+  <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/jstree.js') }}"></script>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.min.css') }}">
+
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+
+    #jstree {
+      margin-top: 20px;
+    }
+
+    .toolbar {
+      margin-bottom: 10px;
+    }
+
+    button {
+      margin-right: 5px;
+      padding: 4px 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Exemple d’éditeur hiérarchique avec jsTree (local)</h1>
+
+  <div class="toolbar">
+    <button id="add_node">Ajouter un nœud</button>
+    <button id="rename_node">Renommer</button>
+    <button id="delete_node">Supprimer</button>
+  </div>
+
+  <div id="jstree"></div>
+
+  <script>
+    $(function () {
+      // Initialisation de l’arbre
+      $('#jstree').jstree({
+        core: {
+          check_callback: true,
+          data: [
+            { "id": "1", "parent": "#", "text": "Racine 1" },
+            { "id": "2", "parent": "1", "text": "Enfant 1.1" },
+            { "id": "3", "parent": "1", "text": "Enfant 1.2" },
+            { "id": "4", "parent": "#", "text": "Racine 2" }
+          ]
+        },
+        plugins: ["dnd", "contextmenu", "types"]
+      });
+
+      const tree = $('#jstree').jstree(true);
+
+      // Ajouter un nœud
+      $('#add_node').on('click', function () {
+        const sel = tree.get_selected();
+        const parent = sel.length ? sel[0] : '#';
+        tree.create_node(parent, { text: "Nouveau nœud" }, "last", function (new_node) {
+          tree.edit(new_node);
+        });
+      });
+
+      // Renommer
+      $('#rename_node').on('click', function () {
+        const sel = tree.get_selected();
+        if (!sel.length) return alert("Sélectionne un nœud à renommer !");
+        tree.edit(sel[0]);
+      });
+
+      // Supprimer
+      $('#delete_node').on('click', function () {
+        const sel = tree.get_selected();
+        if (!sel.length) return alert("Sélectionne un nœud à supprimer !");
+        tree.delete_node(sel[0]);
+      });
+    });
+  </script>
+</body>
+</html>
