@@ -13,6 +13,11 @@ def index():
 def test_jstree():
     return render_template('testjstree.html')
 
+@app.route('/node_editor')
+def node_editor():
+    return render_template('node_editor.html')
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)

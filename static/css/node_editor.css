@@ -1,0 +1,60 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+#editor-container {
+    display: flex;
+    height: 100vh;
+}
+
+#mycanvas {
+    flex-grow: 1;
+    background-color: #222;
+}
+
+#controls {
+    width: 300px;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border-left: 1px solid #555;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+}
+
+button {
+    padding: 8px;
+    cursor: pointer;
+    background-color: #555;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #666;
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 5px;
+    margin-top: 5px;
+    box-sizing: border-box;
+    background-color: #444;
+    color: white;
+    border: 1px solid #666;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.9em;
+}

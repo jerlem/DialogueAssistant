@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Node Editor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/litegraph.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/node_editor.css') }}">
+</head>
+
+<body>
+    <div id="editor-container">
+        <canvas id="mycanvas" width="1024" height="720" style="border: 1px solid"></canvas>
+        <div id="controls">
+            <button id="add-node-btn">Add Dialogue Node</button>
+
+            <div id="node-properties" style="display:none;">
+                <h3>Node Properties</h3>
+                <label>Speaker: <input type="text" id="prop-speaker"></label>
+                <label>Dialogue Type: <input type="text" id="prop-type"></label>
+                <label>Action: <input type="text" id="prop-action"></label>
+                <label>Param: <input type="text" id="prop-param"></label>
+                <label>Link1: <input type="number" id="prop-link1"></label>
+                <label>Link2: <input type="number" id="prop-link2"></label>
+                <label>Link3: <input type="number" id="prop-link3"></label>
+                <label>Link4: <input type="number" id="prop-link4"></label>
+                <label>Mood: <input type="text" id="prop-mood"></label>
+                <label>Dialogue Line: <textarea id="prop-line"></textarea></label>
+                <button id="update-node-btn">Update</button>
+            </div>
+
+            <hr>
+            <h3>TSV Import</h3>
+            <textarea id="tsv-input" placeholder="Paste TSV here..." rows="10" style="width:100%"></textarea>
+            <button id="import-tsv-btn">Import TSV</button>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="{{ url_for('static', filename='js/litegraph.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/node_editor.js') }}"></script>
+</body>
+
+</html>
